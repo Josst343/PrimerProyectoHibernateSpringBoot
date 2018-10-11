@@ -1,5 +1,8 @@
 package mx.edu.uacm.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 /**
  * @Josue
  */
@@ -8,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vehiculo {
@@ -18,7 +22,9 @@ public class Vehiculo {
 	
 	@Column
 	private String modelo;
-
+	//	Magia de hibernet
+	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
+	private List<Accesorio> accsesorios = new ArrayList<Accesorio>();
 	/**
 	 * @return the id
 	 */
@@ -45,6 +51,11 @@ public class Vehiculo {
 	 */
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public void setAccesorios(List<Accesorio> accesorios) {
+		this.accsesorios= accesorios;
+		
 	}
 	
 	
